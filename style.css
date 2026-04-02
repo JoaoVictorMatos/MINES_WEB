@@ -275,7 +275,7 @@ body.dark .cell.number8 { color: #b0bec5; }
     gap: 1.5px;
     max-width: 98vw;
     min-width: unset;
-    width: 100%;
+    /* width: 100%; Isso estava deixando o quadrado mal formatado no mobile*/
   }
   .cell {
     width: 8vw;
