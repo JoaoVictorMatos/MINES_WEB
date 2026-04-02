@@ -275,7 +275,7 @@ body.dark .cell.number8 { color: #b0bec5; }
     gap: 1.5px;
     max-width: 98vw;
     min-width: unset;
-    /* width: 100%; Isso estava deixando o quadrado mal formatado no mobile*/
+    /* width: 100%; Isto estava deixando o board mal formatado. */
   }
   .cell {
     width: 8vw;
@@ -437,8 +437,13 @@ body.dark .cell.number8 { color: #b0bec5; }
 
 @media (max-width: 600px) {
   #board {
-    max-width: 98vw;
-    min-width: 98vw;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        justify-content: center; 
+        align-content: center;
+        margin: 10px auto; 
+        padding: 0; /* Removendo o deslocamento lateral */
+        max-width: 95vw;
   }
   .modal-content {
     padding: 1.2rem 0.5rem;
