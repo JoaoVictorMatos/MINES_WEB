@@ -20,21 +20,21 @@ function getResponsiveDifficulty() {
   if (width <= 340) {
     // Telas super pequenas (ex: 300-340px)
     return {
-      facil: { size: 4, mines: 3 },
-      medio: { size: 5, mines: 5 },
-      dificil: { size: 6, mines: 8 },
+      facil: { size: 5, mines: 5 },
+      medio: { size: 6, mines: 6 },
+      dificil: { size: 7, mines: 7 },
     };
   } else if (width <= 400) {
     return {
-      facil: { size: 5, mines: 5 },
-      medio: { size: 6, mines: 7 },
-      dificil: { size: 7, mines: 10 },
+      facil: { size: 6, mines: 7 },
+      medio: { size: 7, mines: 8 },
+      dificil: { size: 8, mines: 12 },
     };
   } else if (width <= 600) {
     return {
-      facil: { size: 6, mines: 7 },
-      medio: { size: 8, mines: 10 },
-      dificil: { size: 10, mines: 16 },
+      facil: { size: 7, mines: 7 },
+      medio: { size: 9, mines: 10 },
+      dificil: { size: 12, mines: 16 },
     };
   } else {
     return {
