@@ -15,11 +15,37 @@ const modalCloseBtn = document.getElementById("modal-close-btn");
 const playAgainBtn = document.getElementById("play-again-btn");
 
 // --- Configurações ---
-const DIFFICULTY = {
-  facil: { size: 8, mines: 10 },
-  medio: { size: 10, mines: 15 },
-  dificil: { size: 12, mines: 25 },
-};
+function getResponsiveDifficulty() {
+  const width = window.innerWidth;
+  if (width <= 340) {
+    // Telas super pequenas (ex: 300-340px)
+    return {
+      facil: { size: 4, mines: 3 },
+      medio: { size: 5, mines: 5 },
+      dificil: { size: 6, mines: 8 },
+    };
+  } else if (width <= 400) {
+    return {
+      facil: { size: 5, mines: 5 },
+      medio: { size: 6, mines: 7 },
+      dificil: { size: 7, mines: 10 },
+    };
+  } else if (width <= 600) {
+    return {
+      facil: { size: 6, mines: 7 },
+      medio: { size: 8, mines: 10 },
+      dificil: { size: 10, mines: 16 },
+    };
+  } else {
+    return {
+      facil: { size: 8, mines: 10 },
+      medio: { size: 10, mines: 15 },
+      dificil: { size: 12, mines: 25 },
+    };
+  }
+}
+
+let DIFFICULTY = getResponsiveDifficulty();
 
 // --- Estado do Jogo ---
 let board = [];
@@ -34,6 +60,7 @@ let firstClick = true;
 
 // --- Funções Principais ---
 function startGame() {
+  DIFFICULTY = getResponsiveDifficulty();
   const diff = difficultySelect.value;
   size = DIFFICULTY[diff].size;
   mineCount = DIFFICULTY[diff].mines;
@@ -63,6 +90,17 @@ function startGame() {
   renderBoard();
   setBoardGrid();
 }
+
+// Redimensiona o tabuleiro ao mudar o tamanho da tela
+window.addEventListener("resize", () => {
+  const prevDiff = DIFFICULTY;
+  const newDiff = getResponsiveDifficulty();
+  // Só reinicia se mudou o perfil de tamanho
+  if (JSON.stringify(prevDiff) !== JSON.stringify(newDiff)) {
+    DIFFICULTY = newDiff;
+    startGame();
+  }
+});
 
 function setBoardGrid() {
   boardDiv.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
